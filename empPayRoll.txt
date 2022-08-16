@@ -142,3 +142,49 @@ mysql> select * from employee_payroll;
 +----+---------+--------+--------+------------+
 3 rows in set (0.00 sec)
 
+
+mysql> /*****UC->7****/
+mysql>
+mysql> SELECT AVG(salary) FROM employee_payroll where gender = 'M' GROUP BY gender;
++-------------+
+| AVG(salary) |
++-------------+
+|       15000 |
++-------------+
+1 row in set (0.04 sec)
+
+mysql> SELECT AVG(salary) FROM employee_payroll GROUP BY gender;
++-------------+
+| AVG(salary) |
++-------------+
+|       15000 |
+|       22000 |
++-------------+
+2 rows in set (0.04 sec)
+
+mysql> SELECT gender, COUNT(name) FROM employee_payroll GROUP BY gender;
++--------+-------------+
+| gender | COUNT(name) |
++--------+-------------+
+| M      |           2 |
+| F      |           1 |
++--------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT gender, AVG(salary) FROM employee_payroll GROUP BY gender;
++--------+-------------+
+| gender | AVG(salary) |
++--------+-------------+
+| M      |       15000 |
+| F      |       22000 |
++--------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT gender, SUM(salary) FROM employee_payroll GROUP BY gender;
++--------+-------------+
+| gender | SUM(salary) |
++--------+-------------+
+| M      |       30000 |
+| F      |       22000 |
++--------+-------------+
+2 rows in set (0.00 sec)
