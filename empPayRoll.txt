@@ -20,3 +20,24 @@ mysql> show databases;
 
 mysql> use  employee_payroll;
 Database changed
+
+
+mysql> /*****UC->2*****/
+
+
+mysql> create table employee_payroll
+    -> (id int unsigned NOT NULL AUTO_INCREMENT,name varchar(100) NOT  NULL,salary double NOT NULL,start date NOT NULL,Primary key(id));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> describe empolyee_payroll;
+ERROR 1146 (42S02): Table 'payroll_service.empolyee_payroll' doesn't exist
+mysql> describe employee_payroll;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| id     | int unsigned | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(100) | NO   |     | NULL    |                |
+| salary | double       | NO   |     | NULL    |                |
+| start  | date         | NO   |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
