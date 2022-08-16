@@ -93,3 +93,52 @@ mysql> select * from employee_payroll where start between cast('2018-01-01' as d
 +----+---------+--------+------------+
 3 rows in set (0.04 sec)
 
+
+mysql> /*****UC->6******/
+mysql> ALTER TABLE employee_payroll ADD gender char(1) AFTER name;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe employee_payroll;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| id     | int unsigned | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(100) | NO   |     | NULL    |                |
+| gender | char(1)      | YES  |     | NULL    |                |
+| salary | double       | NO   |     | NULL    |                |
+| start  | date         | NO   |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+5 rows in set (0.04 sec)
+
+mysql> UPDATE employee_payroll set name='Harshu' where id=3;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+mysql> update employee_payroll set gender = 'F' where name = 'Harshu';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+---------+--------+--------+------------+
+| id | name    | gender | salary | start      |
++----+---------+--------+--------+------------+
+|  1 | Bhavesh | NULL   |  20000 | 2022-01-01 |
+|  2 | Vinay   | NULL   |  10000 | 2021-03-12 |
+|  3 | Harshu  | F      |  22000 | 2021-05-08 |
++----+---------+--------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> update employee_payroll set gender = 'M' where name = 'Bhavesh' or name = 'Vinay';
+Query OK, 2 rows affected (0.00 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+---------+--------+--------+------------+
+| id | name    | gender | salary | start      |
++----+---------+--------+--------+------------+
+|  1 | Bhavesh | M      |  20000 | 2022-01-01 |
+|  2 | Vinay   | M      |  10000 | 2021-03-12 |
+|  3 | Harshu  | F      |  22000 | 2021-05-08 |
++----+---------+--------+--------+------------+
+3 rows in set (0.00 sec)
+
