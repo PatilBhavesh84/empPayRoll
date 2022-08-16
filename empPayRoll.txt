@@ -21,9 +21,7 @@ mysql> show databases;
 mysql> use  employee_payroll;
 Database changed
 
-
 mysql> /*****UC->2*****/
-
 
 mysql> create table employee_payroll
     -> (id int unsigned NOT NULL AUTO_INCREMENT,name varchar(100) NOT  NULL,salary double NOT NULL,start date NOT NULL,Primary key(id));
@@ -41,3 +39,25 @@ mysql> describe employee_payroll;
 | start  | date         | NO   |     | NULL    |                |
 +--------+--------------+------+-----+---------+----------------+
 4 rows in set (0.00 sec)
+
+
+mysql> /****UC->3****/
+
+
+mysql> Insert into employee_payroll(name,salary,start)values('Bhavesh',20000.0,'2022-01-01'),('Vinay',10000.0,'2021-03-12'),('Ritik',22000.0,'2021-05-08');
+Query OK, 3 rows affected (0.04 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+---------+--------+------------+
+| id | name    | salary | start      |
++----+---------+--------+------------+
+|  1 | Bhavesh |  20000 | 2022-01-01 |
+|  2 | Vinay   |  10000 | 2021-03-12 |
+|  3 | Ritik   |  22000 | 2021-05-08 |
++----+---------+--------+------------+
+3 rows in set (0.00 sec)
+
+
+
+
