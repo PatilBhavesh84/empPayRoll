@@ -236,3 +236,52 @@ mysql> select * from employee_payroll;
 |  3 | Harshu  | NULL         | NA      | NULL       | F      |  22000 | 2021-05-08 |
 +----+---------+--------------+---------+------------+--------+--------+------------+
 3 rows in set (0.00 sec)
+
+
+/*************UC->9*********/
+
+mysql> ALTER TABLE employee_payroll  ADD deductions float NOT NULL AFTER basicPay;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll  ADD taxablePay float NOT NULL AFTER deductions;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll  ADD incomeTax float NOT NULL AFTER taxablePay;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll  ADD netPay float NOT NULL AFTER incomeTax;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe employee_payroll
+    -> ;
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| id           | int unsigned | NO   | PRI | NULL    | auto_increment |
+| name         | varchar(100) | NO   |     | NULL    |                |
+| phone_number | varchar(50)  | YES  |     | NULL    |                |
+| address      | varchar(250) | YES  |     | NA      |                |
+| department   | varchar(250) | YES  |     | NULL    |                |
+| gender       | char(1)      | YES  |     | NULL    |                |
+| basicPay     | double       | NO   |     | NULL    |                |
+| deductions   | float        | NO   |     | NULL    |                |
+| taxablePay   | float        | NO   |     | NULL    |                |
+| incomeTax    | float        | NO   |     | NULL    |                |
+| netPay       | float        | NO   |     | NULL    |                |
+| start        | date         | NO   |     | NULL    |                |
++--------------+--------------+------+-----+---------+----------------+
+12 rows in set (0.00 sec)
+
+mysql> select * from employee_payroll;
++----+---------+--------------+---------+------------+--------+----------+------------+------------+-----------+--------+------------+
+| id | name    | phone_number | address | department | gender | basicPay | deductions | taxablePay | incomeTax | netPay | start      |
++----+---------+--------------+---------+------------+--------+----------+------------+------------+-----------+--------+------------+
+|  1 | Bhavesh | NULL         | NA      | NULL       | M      |    20000 |          0 |          0 |         0 |      0 | 2022-01-01 |
+|  2 | Vinay   | NULL         | NA      | NULL       | M      |    10000 |          0 |          0 |         0 |      0 | 2021-03-12 |
+|  3 | Harshu  | NULL         | NA      | NULL       | F      |    22000 |          0 |          0 |         0 |      0 | 2021-05-08 |
++----+---------+--------------+---------+------------+--------+----------+------------+------------+-----------+--------+------------+
+3 rows in set (0.00 sec)
